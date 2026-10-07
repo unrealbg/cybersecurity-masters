@@ -1,0 +1,2 @@
+# Semester 1 starter exercises currently use only the Python standard library.
+# Add third-party packages here only when a lab genuinely needs them.
