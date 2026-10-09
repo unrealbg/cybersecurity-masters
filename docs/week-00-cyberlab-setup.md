@@ -34,6 +34,8 @@ Each VM gets **two virtual NICs**:
 
 Do not bridge the isolated lab interface to the physical LAN.
 
+VMware Workstation users: follow the dedicated guide in [`week-00-vmware-workstation.md`](week-00-vmware-workstation.md).
+
 ## Hypervisor terminology
 
 Use the equivalent isolated-network mode for your hypervisor:
