@@ -16,7 +16,7 @@ Date verified:
 
 | System | Hostname | NAT IPv4 | Lab IPv4 | Baseline snapshot |
 |---|---|---|---|---|
-| Ubuntu |  |  | 192.168.56.10/24 |  |
+| Ubuntu | cyber-ubuntu | 192.168.153.129/24 | 192.168.56.10/24 | pending |
 | Kali |  |  | 192.168.56.20/24 |  |
 | Windows |  |  | 192.168.56.30/24 |  |
 
@@ -35,7 +35,17 @@ Record PASS / BLOCKED-BY-FIREWALL / FAIL.
 ### Ubuntu
 
 ```text
-paste: ip route
+default via 192.168.153.2 dev ens33 proto dhcp src 192.168.153.129 metric 100
+192.168.56.0/24 dev ens37 proto kernel scope link src 192.168.56.10
+192.168.153.0/24 dev ens33 proto kernel scope link src 192.168.153.129 metric 100
+192.168.153.2 dev ens33 proto dhcp scope link src 192.168.153.129 metric 100
+```
+
+Observed interfaces:
+
+```text
+ens33  192.168.153.129/24
+ens37  192.168.56.10/24
 ```
 
 ### Kali
