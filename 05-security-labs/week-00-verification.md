@@ -17,7 +17,7 @@ Date verified:
 | System | Hostname | NAT IPv4 | Lab IPv4 | Baseline snapshot |
 |---|---|---|---|---|
 | Ubuntu | cyber-ubuntu | 192.168.153.129/24 | 192.168.56.10/24 | pending |
-| Kali |  |  | 192.168.56.20/24 |  |
+| Kali | cyber-kali | 192.168.153.130/24 | 192.168.56.20/24 | pending |
 | Windows |  |  | 192.168.56.30/24 |  |
 
 ## Connectivity matrix
@@ -51,7 +51,16 @@ ens37  192.168.56.10/24
 ### Kali
 
 ```text
-paste: ip route
+default via 192.168.153.2 dev eth0 proto dhcp src 192.168.153.130 metric 101
+192.168.56.0/24 dev eth1 proto kernel scope link src 192.168.56.20 metric 102
+192.168.153.0/24 dev eth0 proto kernel scope link src 192.168.153.130 metric 101
+```
+
+Observed interfaces:
+
+```text
+eth0  192.168.153.130/24
+eth1  192.168.56.20/24
 ```
 
 ### Windows
