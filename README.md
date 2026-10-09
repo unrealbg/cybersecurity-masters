@@ -28,18 +28,23 @@ templates/             Reusable lab-report template
 
 ## Lab environment
 
-Recommended isolated environment:
+Each VM uses a NAT adapter for updates plus a separate isolated lab adapter:
 
 ```text
-                  Internet
-                     |
-                   NAT
-                     |
-             Virtual Lab Network
-              192.168.56.0/24
-             /        |        \
-        Ubuntu       Kali     Windows
+                         Internet
+                            |
+                      Hypervisor NAT
+                     /      |       \
+                 Ubuntu    Kali    Windows
+                   |        |        |
+                   +--------+--------+
+                            |
+                 CYBERLAB 192.168.56.0/24
 ```
+
+Week 0 setup guide: [`docs/week-00-cyberlab-setup.md`](docs/week-00-cyberlab-setup.md)
+
+Verification worksheet: [`05-security-labs/week-00-verification.md`](05-security-labs/week-00-verification.md)
 
 Use intentionally vulnerable services **only inside an isolated lab you control**.
 
