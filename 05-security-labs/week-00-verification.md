@@ -1,6 +1,6 @@
 # Week 0 — CyberLab Verification
 
-Status: **NOT YET VERIFIED**
+Status: **PASS**
 
 > Complete this file after the three VMs have actually been created. Do not mark items complete from the design alone.
 
@@ -16,9 +16,9 @@ Date verified: 2026-10-10
 
 | System | Hostname | NAT IPv4 | Lab IPv4 | Baseline snapshot |
 |---|---|---|---|---|
-| Ubuntu | cyber-ubuntu | 192.168.153.129/24 | 192.168.56.10/24 | pending |
-| Kali | cyber-kali | 192.168.153.130/24 | 192.168.56.20/24 | pending |
-| Windows | CYBER-WIN10 | 192.168.153.132/24 | 192.168.56.30/24 | pending |
+| Ubuntu | cyber-ubuntu | 192.168.153.129/24 | 192.168.56.10/24 | week-00-clean-baseline |
+| Kali | cyber-kali | 192.168.153.130/24 | 192.168.56.20/24 | week-00-clean-baseline |
+| Windows | CYBER-WIN10 | 192.168.153.132/24 | 192.168.56.30/24 | week-00-clean-baseline |
 
 ## Connectivity matrix
 
@@ -26,8 +26,8 @@ Record PASS / BLOCKED-BY-FIREWALL / FAIL.
 
 | Source → Destination | Ubuntu | Kali | Windows |
 |---|---|---|---|
-| Ubuntu | N/A | PASS | BLOCKED-BY-FIREWALL |
-| Kali | PASS | N/A | BLOCKED-BY-FIREWALL |
+| Ubuntu | N/A | PASS | PASS |
+| Kali | PASS | N/A | PASS |
 | Windows | PASS | PASS | N/A |
 
 ## Routing evidence
@@ -79,20 +79,26 @@ CyberLab  192.168.56.30/24
 - [x] Isolated lab NICs are not bridged to the physical LAN.
 - [x] Lab NICs have no default gateway.
 - [x] NAT is the Internet-facing path.
-- [ ] Baseline snapshots exist.
+- [x] Baseline snapshots exist.
 - [ ] Sensitive host folders are not shared into risky lab VMs.
 - [ ] No real secrets/credentials have been copied into the lab.
 
 ## Result
 
-- [ ] PASS — Week 0 CyberLab baseline is ready.
-- [x] NEEDS WORK — document the problem below.
+- [x] PASS — Week 0 CyberLab baseline is ready.
+- [ ] NEEDS WORK — document the problem below.
 
 ### Notes / problems
 
 ```text
-Windows can reach Ubuntu and Kali over VMnet2.
-Ubuntu and Kali can reach each other.
-Inbound ICMP echo to Windows is currently blocked by Windows Firewall.
-Allow ICMPv4 echo only on the CyberLab interface/subnet, then retest.
+Full peer connectivity verified over VMnet2:
+- Ubuntu <-> Kali: PASS
+- Ubuntu <-> Windows: PASS
+- Kali <-> Windows: PASS
+
+Windows inbound ICMPv4 echo was enabled only for the CyberLab interface/subnet.
+All three VMs have a week-00-clean-baseline snapshot.
+
+Before intentionally vulnerable labs, confirm that sensitive host folders are not shared
+and that no real credentials, keys or tokens are copied into the lab.
 ```
