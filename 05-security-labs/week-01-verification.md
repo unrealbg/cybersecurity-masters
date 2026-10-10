@@ -54,7 +54,30 @@ Listening sockets from `sudo ss -tulpn`: none observed at capture time.
 ### Windows
 
 ```text
-paste concise output / observations here
+Interfaces:
+NAT       192.168.153.132/24   (DHCP, ifIndex 12)
+CyberLab  192.168.56.30/24     (static, ifIndex 10)
+
+Default route:
+0.0.0.0/0 -> 192.168.153.2 via NAT (ifIndex 12)
+
+Directly connected routes:
+192.168.153.0/24 via NAT
+192.168.56.0/24 via CyberLab
+
+Selected TCP listeners:
+135/tcp on 0.0.0.0 and ::
+139/tcp on 192.168.153.132 and 192.168.56.30
+445/tcp on ::
+5040/tcp on 0.0.0.0
+7680/tcp on ::
+dynamic RPC-range listeners around 49664-49669 on 0.0.0.0 / ::
+
+Selected UDP endpoints:
+137/udp and 138/udp on both IPv4 interfaces
+1900/udp on both IPv4 interfaces plus loopback/link-local
+5353/udp on 0.0.0.0 and ::
+5355/udp on 0.0.0.0 and ::
 ```
 
 ## Route prediction
