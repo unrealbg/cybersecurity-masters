@@ -66,12 +66,18 @@ Directly connected routes:
 192.168.56.0/24 via CyberLab
 
 Selected TCP listeners:
-135/tcp on 0.0.0.0 and ::
-139/tcp on 192.168.153.132 and 192.168.56.30
-445/tcp on ::
-5040/tcp on 0.0.0.0
-7680/tcp on ::
-dynamic RPC-range listeners around 49664-49669 on 0.0.0.0 / ::
+135/tcp on 0.0.0.0 and :: -> PID 500 svchost
+139/tcp on 192.168.153.132 and 192.168.56.30 -> PID 4 System
+445/tcp on :: -> PID 4 System
+5040/tcp on 0.0.0.0 -> PID 4904 svchost
+7680/tcp on :: -> PID 5720 svchost
+42050/tcp on ::1 -> PID 6976 OneDrive.Sync.Service
+49664/tcp on 0.0.0.0 and :: -> PID 832 lsass
+49665/tcp on 0.0.0.0 and :: -> PID 676 wininit
+49666/tcp on 0.0.0.0 and :: -> PID 1440 svchost
+49667/tcp on 0.0.0.0 and :: -> PID 1828 svchost
+49668/tcp on 0.0.0.0 and :: -> PID 2832 spoolsv
+49669/tcp on 0.0.0.0 and :: -> PID 812 services
 
 Selected UDP endpoints:
 137/udp and 138/udp on both IPv4 interfaces
