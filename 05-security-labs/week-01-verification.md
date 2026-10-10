@@ -48,7 +48,7 @@ Link-layer observations:
 eth0 MAC 00:0c:29:07:6b:e5
 eth1 MAC 00:0c:29:07:6b:ef
 
-Listening socket ownership: pending `sudo ss -tulpn` output.
+Listening sockets from `sudo ss -tulpn`: none observed at capture time.
 ```
 
 ### Windows
