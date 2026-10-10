@@ -35,7 +35,20 @@ ens37 MAC 00:0c:29:b5:7d:5a
 ### Kali
 
 ```text
-paste concise output / observations here
+Interfaces:
+eth0  192.168.153.130/24   (NAT-facing)
+eth1  192.168.56.20/24     (CyberLab)
+
+Routes:
+default via 192.168.153.2 dev eth0
+192.168.56.0/24 dev eth1
+192.168.153.0/24 dev eth0
+
+Link-layer observations:
+eth0 MAC 00:0c:29:07:6b:e5
+eth1 MAC 00:0c:29:07:6b:ef
+
+Listening socket ownership: pending `sudo ss -tulpn` output.
 ```
 
 ### Windows
