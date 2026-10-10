@@ -51,7 +51,7 @@ Use intentionally vulnerable services **only inside an isolated lab you control*
 ## Semester 1 roadmap
 
 - [x] Week 0 — Lab environment and repository setup
-- [ ] Week 1 — TCP/IP basics + Python refresher
+- [ ] Week 1 — TCP/IP basics + Python refresher ([guide](docs/week-01-tcpip-python.md))
 - [ ] Week 2 — IPv4, subnetting, ARP and ICMP
 - [ ] Week 3 — DNS, DHCP and Python sockets
 - [ ] Week 4 — HTTP, HTTPS and TLS
