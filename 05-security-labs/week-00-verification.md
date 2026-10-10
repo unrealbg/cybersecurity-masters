@@ -6,11 +6,11 @@ Status: **NOT YET VERIFIED**
 
 ## Environment
 
-Hypervisor:
+Hypervisor: VMware Workstation
 
-Host OS:
+Host OS: Windows
 
-Date verified:
+Date verified: 2026-10-10
 
 ## Address inventory
 
@@ -18,7 +18,7 @@ Date verified:
 |---|---|---|---|---|
 | Ubuntu | cyber-ubuntu | 192.168.153.129/24 | 192.168.56.10/24 | pending |
 | Kali | cyber-kali | 192.168.153.130/24 | 192.168.56.20/24 | pending |
-| Windows |  |  | 192.168.56.30/24 |  |
+| Windows | CYBER-WIN10 | 192.168.153.132/24 | 192.168.56.30/24 | pending |
 
 ## Connectivity matrix
 
@@ -26,9 +26,9 @@ Record PASS / BLOCKED-BY-FIREWALL / FAIL.
 
 | Source → Destination | Ubuntu | Kali | Windows |
 |---|---|---|---|
-| Ubuntu | N/A |  |  |
-| Kali |  | N/A |  |
-| Windows |  |  | N/A |
+| Ubuntu | N/A | PASS | BLOCKED-BY-FIREWALL |
+| Kali | PASS | N/A | BLOCKED-BY-FIREWALL |
+| Windows | PASS | PASS | N/A |
 
 ## Routing evidence
 
@@ -66,14 +66,19 @@ eth1  192.168.56.20/24
 ### Windows
 
 ```text
-paste: Get-NetRoute -DestinationPrefix "0.0.0.0/0"
+Default route:
+0.0.0.0/0 -> 192.168.153.2 via NAT (ifIndex 11)
+
+Observed interfaces:
+NAT       192.168.153.132/24
+CyberLab  192.168.56.30/24
 ```
 
 ## Isolation checklist
 
-- [ ] Isolated lab NICs are not bridged to the physical LAN.
-- [ ] Lab NICs have no default gateway.
-- [ ] NAT is the Internet-facing path.
+- [x] Isolated lab NICs are not bridged to the physical LAN.
+- [x] Lab NICs have no default gateway.
+- [x] NAT is the Internet-facing path.
 - [ ] Baseline snapshots exist.
 - [ ] Sensitive host folders are not shared into risky lab VMs.
 - [ ] No real secrets/credentials have been copied into the lab.
@@ -81,10 +86,13 @@ paste: Get-NetRoute -DestinationPrefix "0.0.0.0/0"
 ## Result
 
 - [ ] PASS — Week 0 CyberLab baseline is ready.
-- [ ] NEEDS WORK — document the problem below.
+- [x] NEEDS WORK — document the problem below.
 
 ### Notes / problems
 
 ```text
-
+Windows can reach Ubuntu and Kali over VMnet2.
+Ubuntu and Kali can reach each other.
+Inbound ICMP echo to Windows is currently blocked by Windows Firewall.
+Allow ICMPv4 echo only on the CyberLab interface/subnet, then retest.
 ```
