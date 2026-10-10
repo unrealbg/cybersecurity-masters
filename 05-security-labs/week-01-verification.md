@@ -7,7 +7,23 @@ Status: **NOT YET VERIFIED**
 ### Ubuntu
 
 ```text
-paste concise output / observations here
+Interfaces:
+ens33  192.168.153.129/24   (NAT-facing)
+ens37  192.168.56.10/24     (CyberLab)
+
+Routes:
+default via 192.168.153.2 dev ens33
+192.168.56.0/24 dev ens37
+192.168.153.0/24 dev ens33
+
+Observed listening sockets:
+TCP: 0.0.0.0:22, [::]:22
+UDP: 127.0.0.53:53, 127.0.0.54:53, 192.168.153.129%ens33:68, 127.0.0.1:323, [::1]:323
+TCP DNS stub listeners: 127.0.0.53:53, 127.0.0.54:53
+
+Link-layer observations:
+ens33 MAC 00:0c:29:b5:7d:50
+ens37 MAC 00:0c:29:b5:7d:5a
 ```
 
 ### Kali
@@ -56,5 +72,5 @@ Mark only after explaining each answer in your own words.
 ### Notes
 
 ```text
-
+Ubuntu Week 1 networking evidence captured from the live CyberLab.
 ```
