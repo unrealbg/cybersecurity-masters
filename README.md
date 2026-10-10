@@ -50,7 +50,7 @@ Use intentionally vulnerable services **only inside an isolated lab you control*
 
 ## Semester 1 roadmap
 
-- [ ] Week 0 — Lab environment and repository setup
+- [x] Week 0 — Lab environment and repository setup
 - [ ] Week 1 — TCP/IP basics + Python refresher
 - [ ] Week 2 — IPv4, subnetting, ARP and ICMP
 - [ ] Week 3 — DNS, DHCP and Python sockets
