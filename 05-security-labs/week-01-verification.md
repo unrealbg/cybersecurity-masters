@@ -21,6 +21,12 @@ TCP: 0.0.0.0:22, [::]:22
 UDP: 127.0.0.53:53, 127.0.0.54:53, 192.168.153.129%ens33:68, 127.0.0.1:323, [::1]:323
 TCP DNS stub listeners: 127.0.0.53:53, 127.0.0.54:53
 
+Process ownership from `sudo ss -tulpn`:
+- systemd-resolved -> DNS stub listeners on 127.0.0.53:53 / 127.0.0.54:53
+- systemd-networkd -> DHCP client UDP socket on 192.168.153.129%ens33:68
+- chronyd -> NTP-related local sockets on 127.0.0.1:323 / [::1]:323
+- systemd (PID 1) -> TCP listeners on 0.0.0.0:22 / [::]:22, consistent with socket-activated SSH
+
 Link-layer observations:
 ens33 MAC 00:0c:29:b5:7d:50
 ens37 MAC 00:0c:29:b5:7d:5a
