@@ -159,7 +159,7 @@ The corresponding next-hop neighbor entry was:
 
 This demonstrates that the remote IP destination remains `8.8.8.8`, while the first Ethernet frame is addressed to the MAC of the next-hop gateway `192.168.153.2`.
 
-Note: this live lookup shows DHCP source address `192.168.153.128`, whereas an earlier Week 1 capture showed `192.168.153.129`. The earlier evidence is preserved as a point-in-time capture; the current NAT-interface address should be reconfirmed before final Week 1 closure.
+Follow-up confirmation with `ip -br addr show ens33` showed `ens33 192.168.153.128/24`. The earlier `192.168.153.129` entry is therefore preserved as a point-in-time DHCP lease; the current observed NAT-interface address is `192.168.153.128/24`.
 
 ## Route prediction
 
