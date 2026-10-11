@@ -113,6 +113,18 @@ ARP Reply:   192.168.56.10 is-at 00:0c:29:b5:7d:5a
 
 This demonstrates direct on-link IPv4 delivery: route selection chooses `ens37`, ARP resolves the peer IPv4 address to a Layer-2 MAC address, and no gateway is involved.
 
+
+### Traceroute observation
+
+A standard traceroute from Ubuntu to `8.8.8.8` reached the VMware NAT gateway as hop 1:
+
+```text
+1  _gateway (192.168.153.2)
+2-30  * * *
+```
+
+This confirms that the default route is used and that the first routed hop is the VMware NAT gateway. The later timeouts do not by themselves prove lack of Internet reachability; intermediate devices may filter or not return the ICMP TTL-expired responses used by traceroute, or the default UDP traceroute probes may be filtered.
+
 ## Route prediction
 
 - [ ] Predictions were written before checking the routing tables.
