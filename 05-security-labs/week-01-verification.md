@@ -116,14 +116,31 @@ This demonstrates direct on-link IPv4 delivery: route selection chooses `ens37`,
 
 ### Traceroute observation
 
-A standard traceroute from Ubuntu to `8.8.8.8` reached the VMware NAT gateway as hop 1:
+A standard UDP traceroute from Ubuntu to `8.8.8.8` reached the VMware NAT gateway as hop 1 and then timed out:
 
 ```text
 1  _gateway (192.168.153.2)
 2-30  * * *
 ```
 
-This confirms that the default route is used and that the first routed hop is the VMware NAT gateway. The later timeouts do not by themselves prove lack of Internet reachability; intermediate devices may filter or not return the ICMP TTL-expired responses used by traceroute, or the default UDP traceroute probes may be filtered.
+ICMP traceroute reached the destination despite missing replies from intermediate hops:
+
+```text
+1  _gateway (192.168.153.2)
+2-8  * * *
+9  dns.google (8.8.8.8)
+```
+
+TCP traceroute to port 443 reached the destination immediately after the VMware NAT gateway:
+
+```text
+1  _gateway (192.168.153.2)
+2  dns.google (8.8.8.8)
+```
+
+A direct ping also succeeded with 4/4 replies and 0% packet loss.
+
+These observations show that traceroute visibility depends on probe type and on how NAT/firewalls/intermediate network devices handle TTL-expired and probe traffic. A `* * *` hop indicates that no expected response was received within the timeout; it does not by itself prove that routing stops at that hop.
 
 ## Route prediction
 
