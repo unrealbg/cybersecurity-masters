@@ -86,6 +86,33 @@ Selected UDP endpoints:
 5355/udp on 0.0.0.0 and ::
 ```
 
+### ARP observation
+
+Ubuntu CyberLab interface: `ens37` (`192.168.56.10/24`)  
+Kali CyberLab address: `192.168.56.20/24`
+
+Observed after starting with no Kali neighbor entry and sending one ICMP echo:
+
+```text
+ARP Request: who-has 192.168.56.20 tell 192.168.56.10
+ARP Reply:   192.168.56.20 is-at 00:0c:29:07:6b:ef
+```
+
+Neighbor cache after the exchange:
+
+```text
+192.168.56.20 dev ens37 lladdr 00:0c:29:07:6b:ef REACHABLE
+```
+
+A later reverse ARP exchange was also captured:
+
+```text
+ARP Request: who-has 192.168.56.10 tell 192.168.56.20
+ARP Reply:   192.168.56.10 is-at 00:0c:29:b5:7d:5a
+```
+
+This demonstrates direct on-link IPv4 delivery: route selection chooses `ens37`, ARP resolves the peer IPv4 address to a Layer-2 MAC address, and no gateway is involved.
+
 ## Route prediction
 
 - [ ] Predictions were written before checking the routing tables.
@@ -121,4 +148,5 @@ Mark only after explaining each answer in your own words.
 
 ```text
 Ubuntu Week 1 networking evidence captured from the live CyberLab.
+ARP resolution between Ubuntu and Kali was observed live on the isolated CyberLab segment.
 ```
