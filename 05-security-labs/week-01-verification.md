@@ -142,6 +142,25 @@ A direct ping also succeeded with 4/4 replies and 0% packet loss.
 
 These observations show that traceroute visibility depends on probe type and on how NAT/firewalls/intermediate network devices handle TTL-expired and probe traffic. A `* * *` hop indicates that no expected response was received within the timeout; it does not by itself prove that routing stops at that hop.
 
+
+### Route lookup and next-hop neighbor
+
+A live route lookup for `8.8.8.8` returned:
+
+```text
+8.8.8.8 via 192.168.153.2 dev ens33 src 192.168.153.128 uid 1000
+```
+
+The corresponding next-hop neighbor entry was:
+
+```text
+192.168.153.2 dev ens33 lladdr 00:50:56:f3:c7:3c REACHABLE
+```
+
+This demonstrates that the remote IP destination remains `8.8.8.8`, while the first Ethernet frame is addressed to the MAC of the next-hop gateway `192.168.153.2`.
+
+Note: this live lookup shows DHCP source address `192.168.153.128`, whereas an earlier Week 1 capture showed `192.168.153.129`. The earlier evidence is preserved as a point-in-time capture; the current NAT-interface address should be reconfirmed before final Week 1 closure.
+
 ## Route prediction
 
 - [ ] Predictions were written before checking the routing tables.
